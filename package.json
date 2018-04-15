@@ -1,0 +1,29 @@
+{
+  "name": "132chapelstllc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "exports": "^0.0.1",
+    "express": "^4.16.3",
+    "path": "^0.12.7",
+    "stripe": "^5.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clarkwmcd/132chapelstLLC.git"
+  },
+  "author": "C. McDermith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clarkwmcd/132chapelstLLC/issues"
+  },
+  "homepage": "https://github.com/clarkwmcd/132chapelstLLC#readme"
+}

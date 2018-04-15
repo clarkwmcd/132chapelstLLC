@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Stripe Checkout Integration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>132 Chapel St. Rent Payment</h2>
+
+      <div id="shop">
+        <button type="button" class="btn btn-primary" id="buttonCheckoutwithCard">Checkout with Credit Card</button>
+        <button type="button" class="btn btn-primary" id="buttonCheckoutwithACH">Checkout with ACH</button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var checkoutHandler = StripeCheckout.configure({
+      key: "pk_test_edJT25Bz1YVCJKIMvmBGCS5Y",
+      locale: "auto"
+    });
+
+    var buttonCard = document.getElementById("buttonCheckoutwithCard");
+
+    buttonCard.addEventListener("click", function(ev) {
+      checkoutHandler.open({
+        name: "132 Chapel St. LLC",
+        description: "Rent Payment",
+        token: handleToken
+      });
+    });
+
+    function handleToken(token) {
+      fetch("/charge", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(token)
+      })
+      .then(output => {
+        if (output.status === "succeeded")
+          document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+      })
+    }
+
+  </script>
+</html>
